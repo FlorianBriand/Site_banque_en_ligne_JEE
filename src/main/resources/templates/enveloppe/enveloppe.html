@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no"/>
+    <title>AttilaLive</title>
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/assets/fonts/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/assets/css/-Login-form-Page-BS4-.css"/>
+    <link rel="stylesheet" href="/assets/css/styles.css"/>
+</head>
+
+<body>
+<h3 class="text-info font-weight-light mb-5"><i class="fa fa-diamond"></i>&nbsp;Liste des opérations</h3>
+<!--<span th:text="${totalCompteCourant}">Total</span>-->
+<table class="table">
+    <th>id</th>
+    <th>Montant</th>
+    <tr th:each="portefeuille : ${enveloppeList}">
+        <td th:text="${portefeuille.montant}">montant operation</td>
+        <!-- <div class="form-group d-flex flex-column"><label class="text-secondary">Image</label><img id="image" alt="product-image"></div> -->
+    </tr>
+</table>
+
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>

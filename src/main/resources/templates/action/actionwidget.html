@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <title>Tableau de bord</title>
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+    <!-- <link rel="stylesheet" href="/assets/css/sb-admin-2.css" /> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+    <div id="dashboard">
+        <div id="dashboard-menu">
+            <div class="offcanvas-body">
+                <img class="menu-logo" src="/assets/Logo Wide.svg" />
+                <div class="divider"></div>
+                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/dashboard">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Déconnexion</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="dashboard-content-wrapper">
+
+            <!-- Navbar -->
+            <nav class="navbar navbar-light bg-light sticky-top">
+
+                <div class="container-fluid">
+                    <!-- Possibilité d'ajouter une <div/> avec une border de (1px, solid, #222)-->
+                    <button class="nav-item dropdown no-arrow ml-auto" type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                        <img src="https://picsum.photos/100/" class="profile-picture">
+                        <p th:text="${prenomUtilisateur}+ ' ' +${nomUtilisateur}">Emmanuel Cousin</p>
+                    </button>
+                </div>
+            </nav>
+
+            <div id="dashboard-content">
+                <div class="row" style="margin-bottom: 2em">
+                    <a class="btn btn-info mt-2" href="/action"  >Retour aux actions</a>
+                    <div class="col-12">
+                        <div class="card shadow">
+                            <div class="card-header font-weight-bold text-primary" id="titre-total" th:text="'Action : '+${name}">
+                                Action
+                            </div>
+                            <div class="card-body action">
+                                <!-- TradingView Widget BEGIN -->
+                                <div class="tradingview-widget-container">
+                                    <div id="tradingview_d0d23"></div>
+                                    <div class="tradingview-widget-copyright"><a
+                                            th:href="@{'https://fr.tradingview.com/symbols/NASDAQ-'+ ${symbol} +'/'}" rel="noopener"
+                                            target="_blank"><span class="blue-text" th:text="${symbol}+' graphique'">AAPL graphique</span></a> par
+                                        TradingView</div>
+                                    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                                    <script type="text/javascript" th:inline="javascript">
+                                        let symbol = "NASDAQ:"+[[${symbol}]];
+                                        new TradingView.widget(
+                                            {
+                                                "width": 980,
+                                                "height": 610,
+                                                "symbol": symbol,
+                                                "interval": "D",
+                                                "timezone": "Etc/UTC",
+                                                "theme": "dark",
+                                                "style": "1",
+                                                "locale": "fr",
+                                                "toolbar_bg": "#f1f3f6",
+                                                "enable_publishing": false,
+                                                "allow_symbol_change": true,
+                                                "container_id": "tradingview_d0d23"
+                                            }
+                                        );
+                                    </script>
+                                </div>
+                                <!-- TradingView Widget END -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card shadow" >
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Acheter l'action pour votre PEA</h6>
+                                </div>
+                                <div class="card-body" th:unless="${verifPEA}">
+                                    <form action="#" th:action="@{'/add-actionPea/' + ${symbol}}" th:object="${peaHasAction}" method="POST"
+                                          enctype="multipart/form-data">
+                                        <div class="form-group">
+                                            <label class="text-secondary">Quantité</label>
+                                            <input class="form-control" type="number" name="quantite">
+                                        </div>
+
+                                        <button class="btn btn-info mt-2" type="submit">Acheter pour votre PEA</button>
+                                    </form>
+                                </div>
+                                <div class="container flex-column col-6" th:if="${verifPEA}"><p>Vous n'avez pas de PEA</p></div>
+                            </div>
+                            <div th:if="${verifPEA}">
+                                <a class="btn btn-info mt-2" href="/moncompte">Créer un PEA dans mon compte</a>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="card shadow">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Acheter l'action pour votre Assurance vie</h6>
+                                </div>
+                                <div class="card-body" th:unless="${verifAssuranceVie}">
+                                    <form action="#" th:action="@{'/add-actionAV/' + ${symbol}}" th:object="${assurancevieHasAction}" method="POST"
+                                        enctype="multipart/form-data">
+                                        <div class="form-group">
+                                            <label class="text-secondary">Quantité</label>
+                                            <input class="form-control" type="number" name="quantite">
+                                        </div>
+
+                                        <button class="btn btn-info mt-2" type="submit">Acheter pour votre Assurance Vie</button>
+                                    </form>
+                                </div>
+                                <div class="container flex-column col-6" th:if="${verifAssuranceVie}"><p>Vous n'avez pas d'Assurance Vie</p></div>
+                            </div>
+                            <div th:if="${verifAssuranceVie}">
+                                <a class="btn btn-info mt-2" href="/moncompte">Créer une Assurance Vie dans mon compte</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <footer>
+                    <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+                        © 2022 Flexcount, Inc
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </div>
+</body>

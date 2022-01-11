@@ -1,0 +1,8 @@
+Lors de la création d'un compte :
+Créer une ligne CompteBourse id auto incrémenter
+Créer une ligne CompteCourant id auto incrémenter
+Créer une ligne enveloppe avec idcompteBourse et idcompteCourant
+Créer un utilisateur avec idEnveloppe
+
+Lors de la connexion d'un utilisateur :
+Initialiser idUtilisateur, idEnveloppe, idCompteBourse, idCompteCourant

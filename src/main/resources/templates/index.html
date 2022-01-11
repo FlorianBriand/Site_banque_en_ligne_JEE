@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+	<title> Flexcount </title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+	<link rel="stylesheet" href="/assets/css/stylesIndex.css" />
+	<!-- JavaScript Bundle with Popper -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+		crossorigin="anonymous"></script>
+</head>
+
+<body>
+	<!-- Navbar -->
+	<nav class="navbar sticky-top navbar-light bg-light shadow">
+		<div class="container-fluid">
+			<a class="navbar-brand">Flexcount</a>
+			<form class="d-flex navbar-buttons">
+				<a class="btn btn-outline-primary" href="/login">Connexion</a>
+				<a class="btn btn-primary" href="/signup">Inscription</a>
+			</form>
+		</div>
+	</nav>
+	<!-- End Navbar -->
+	<div id="wrapper">
+
+		<section id="hero">
+			<div class="container margin">
+				<div class="row cards">
+
+					<div class="col-md-4 d-flex justify-content-center">
+						<div class="card" style="width: 18rem;">
+							<div class="card-body">
+								<h5 class="card-title">Flexcount</h5>
+								<p class="card-text">Gérer vos comtpes</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-4 d-flex justify-content-center">
+						<div class="card" style="width: 18rem;">
+							<div class="card-body">
+								<h5 class="card-title">Actions</h5>
+								<p class="card-text">Acheter des actions</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-4 d-flex justify-content-center">
+						<div class="card" style="width: 18rem;">
+							<div class="card-body">
+								<h5 class="card-title">Actions</h5>
+								<p class="card-text">Gérer vos actions</p>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="container">
+				<div class="row cards">
+
+					<div class="col-md-4 d-flex justify-content-center">
+						<div class="card" style="width: 18rem;">
+							<div class="card-body">
+								<h5 class="card-title">Plan d'Epargne Logement</h5>
+								<p class="card-text">Gérer votre Plan d'Epargne Logement</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-4 d-flex justify-content-center">
+						<div class="card" style="width: 18rem;">
+							<div class="card-body">
+								<h5 class="card-title">Compte Courant</h5>
+								<p class="card-text">Gérer votre compte courant</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-4 d-flex justify-content-center">
+						<div class="card" style="width: 18rem;">
+							<div class="card-body">
+								<h5 class="card-title">Assurance Vie</h5>
+								<p class="card-text">Gérer votre Assurance Vie</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- <div id="cards">
+			<div class="custom-card">
+				<h3 class="titre">Titre</h3>
+				<p>Contenu</p>
+			</div>
+			<div class="custom-card">
+				<h3 class="titre">Titre</h3>
+				<p>Contenu</p>
+			</div>
+		</div> -->
+	</div>
+
+<!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container">
+	<div class="tradingview-widget-container__widget"></div>
+	<div class="tradingview-widget-copyright"><a href="https://fr.tradingview.com" rel="noopener" target="_blank"><span class="blue-text">Ticker Tape</span></a> par TradingView</div>
+	<script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+	{
+	"symbols": [
+	  {
+		"proName": "FOREXCOM:SPXUSD",
+		"title": "S&P 500"
+	  },
+	  {
+		"proName": "FOREXCOM:NSXUSD",
+		"title": "US 100"
+	  },
+	  {
+		"proName": "FX_IDC:EURUSD",
+		"title": "EUR/USD"
+	  },
+	  {
+		"proName": "BITSTAMP:BTCUSD",
+		"title": "Bitcoin"
+	  },
+	  {
+		"proName": "BITSTAMP:ETHUSD",
+		"title": "Ethereum"
+	  }
+	],
+	"showSymbolLogo": true,
+	"colorTheme": "dark",
+	"isTransparent": false,
+	"displayMode": "adaptive",
+	"locale": "fr"
+  }
+	</script>
+  </div>
+  <!-- TradingView Widget END -->
+  
+</body>
+<footer class="mt-auto">
+	<div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+		© 2022 Flexcount, Inc
+	</div>
+</footer>
+
+</html>
