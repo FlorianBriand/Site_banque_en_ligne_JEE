@@ -94,7 +94,8 @@ public class DashboardController {
             double sommeMontant = sommeOperations(operationList);
 
             //si montant change mettre dans bdd
-            if (sommeMontant != derniereMontant) {
+            double difference = Math.abs(sommeMontant - derniereMontant);
+            if (difference > 0.1) {
                 //j'ajoute point dans graph
                 LocalDate now = LocalDate.now();
                 Historique historique = new Historique();
@@ -115,7 +116,7 @@ public class DashboardController {
         Comptecourant comptecourant = (Comptecourant) session.getAttribute("CompteCourant");
         Comptebourse comptebourse = (Comptebourse) session.getAttribute("CompteBourse");
 
-        List<Portefeuille> enveloppeList = new ArrayList<Portefeuille>();
+        List<Portefeuille> enveloppeList = new ArrayList<>();
 
         List<Portefeuille> enveloppeListAssuranceVie = assurancevieRepository.findAssuranceviesByComptebourseIdcomptebourse(comptebourse);
         List<Portefeuille> enveloppeListPea = peaRepository.findPeasByComptebourseIdcomptebourse(comptebourse);
@@ -159,8 +160,8 @@ public class DashboardController {
 
     private double sommeEnveloppes(List<Portefeuille> enveloppeList) {
         double somme = 0;
-        for (int i = 0; i < enveloppeList.size(); i++) {
-            somme = somme + enveloppeList.get(i).getMontant();
+        for (Portefeuille portefeuille : enveloppeList) {
+            somme = somme + portefeuille.getMontant();
         }
         return somme;
     }
